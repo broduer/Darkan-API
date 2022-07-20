@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { MONGODB_PROVIDER } from '../constants';
+import { MONGODB_PROVIDER } from 'src/constants';
 
 @Injectable()
 export class LogsService {
