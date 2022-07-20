@@ -1,5 +1,5 @@
 import { MongoClient } from 'mongodb';
-import { config } from '../../config';
+import * as config from '../../config.json';
 
 export const mongoDbProviders = [
   {
