@@ -5,7 +5,21 @@ import { MONGODB_PROVIDER } from 'src/constants';
 export class LogsService {
   constructor(@Inject(MONGODB_PROVIDER) private readonly db: any) {}
 
-  getHello(): string {
-    return 'Hello World!';
+  async getErrors(page: 1, limit = 25) {
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    return await this.db.collection('logs').find({ type: 'ERROR' }).skip(startIndex).limit(limit).toArray();
+  }
+
+  async getCommands(page = 1, limit = 25) {
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    return await this.db.collection('logs').find({ type: 'COMMANDS' }).skip(startIndex).limit(limit).toArray();
+  }
+
+  async getGE(page = 1, limit = 25) {
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    return await this.db.collection('logs').find({ type: 'GE' }).skip(startIndex).limit(limit).toArray();
   }
 }
