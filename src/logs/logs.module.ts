@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { MongoDbModule } from 'src/mongo/mongodb.module';
+import { WorldMongoDbModule } from 'src/mongo/world_mongodb.module';
 import { LogsController } from './logs.controller';
 import { LogsService } from './logs.service';
 
 @Module({
-  imports: [MongoDbModule],
+  imports: [WorldMongoDbModule],
   controllers: [LogsController],
   providers: [LogsService],
 })

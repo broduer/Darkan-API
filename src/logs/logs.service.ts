@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { MONGODB_PROVIDER } from 'src/constants';
+import { WORLD_MONGODB_PROVIDER } from 'src/constants';
 
 @Injectable()
 export class LogsService {
-  constructor(@Inject(MONGODB_PROVIDER) private readonly db: any) {}
+  constructor(@Inject(WORLD_MONGODB_PROVIDER) private readonly db: any) {}
 
   async getLogs(page = 1, limit = 25, type: string) {
     const startIndex = (page - 1) * limit;

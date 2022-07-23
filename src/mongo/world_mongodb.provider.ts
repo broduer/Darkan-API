@@ -1,16 +1,17 @@
 import { MongoClient } from 'mongodb';
 import * as config from '../../config.json';
+import { WORLD_MONGODB_PROVIDER } from 'src/constants';
 
-export const mongoDbProviders = [
+export const worldMongoDbProviders = [
   {
-    provide: config.MONGODB_PROVIDER,
+    provide: WORLD_MONGODB_PROVIDER,
     useFactory: async () => new Promise((resolve, reject) => {
-      MongoClient.connect(config.MONGO_CONN_URI,
+      MongoClient.connect(config.WORLD_MONGO_CONN_URI,
       (error, client) => {
         if (error) {
           reject(error);
         } else {
-          resolve(client.db(config.MONGO_DATABASE));
+          resolve(client.db(config.WORLD_MONGO_DATABASE));
         }
       });
     })
