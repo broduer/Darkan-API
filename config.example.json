@@ -3,7 +3,8 @@
     "LOBBY_MONGO_DATABASE": "darkan-server",
     "WORLD_MONGO_CONN_URI": "mongodb://localhost:27017",
     "WORLD_MONGO_DATABASE": "darkan-server",
-    "CRYPT": {
+    "JWT_SECRET": "secretToken",
+    "PASS_CRYPT": {
         "salt": [ 50, 50, 50, 50, -50, -50, -50, -50 ],
         "secret": "secretTokenYeeHaw"
       }
