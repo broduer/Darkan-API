@@ -3,19 +3,21 @@ import { AuthService } from './auth.service';
 import { LocalStrategy } from './local.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { AccountsModule } from 'src/accounts/accounts.module';
-import * as config from '../../config.json';
+import config from '../../config';
+import { JwtStrategy } from './jwt.strategy';
+import { AccountsService } from 'src/accounts/accounts.service';
+import { LobbyMongoDbModule } from 'src/mongo/lobby_mongodb.module';
 
 @Module({
   imports: [
-    AccountsModule,
+    LobbyMongoDbModule,
     PassportModule,
     JwtModule.register({
       secret: config.JWT_SECRET,
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '48h' },
     }),
   ],
-  providers: [AuthService, LocalStrategy],
+  providers: [AccountsService, AuthService, LocalStrategy, JwtStrategy],
   exports: [AuthService],
 })
 export class AuthModule {}
