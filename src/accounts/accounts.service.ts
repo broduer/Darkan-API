@@ -21,7 +21,7 @@ export class AccountsService {
 
   async create(account: CreateAccountDto) {
     try {
-      let response = await this.httpService.axiosRef.post(config.LOBBY_API_URI + 'createaccount', account);
+      let response = await this.httpService.axiosRef.post(config.LOBBY_API_URI + 'createaccount', account, { headers: { 'key': config.LOBBY_API_KEY } });
       delete response.data.password;
       delete response.data.prevPasswords;
       return response.data;
