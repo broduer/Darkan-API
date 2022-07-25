@@ -1,5 +1,5 @@
 import { MongoClient } from 'mongodb';
-import config from '../../config';
+import * as config from '../../config';
 import { LOBBY_MONGODB_PROVIDER } from 'src/constants';
 
 export const lobbyMongoDbProviders = [

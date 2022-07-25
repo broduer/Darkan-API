@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { HttpModule } from '@nestjs/axios';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { AuthModule } from 'src/auth/auth.module';
 import { LobbyMongoDbModule } from 'src/mongo/lobby_mongodb.module';
@@ -7,6 +8,7 @@ import { AccountsService } from './accounts.service';
 
 @Module({
   imports: [
+    HttpModule,
     LobbyMongoDbModule, 
     AuthModule,
     ThrottlerModule.forRoot({

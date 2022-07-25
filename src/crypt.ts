@@ -1,5 +1,5 @@
 import * as crypto from 'crypto';
-import config from '../config';
+import * as config from '../config';
 
 export class Crypt {
   static encrypt(plainText: string) {
