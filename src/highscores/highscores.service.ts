@@ -17,6 +17,6 @@ export class HighscoresService {
       default:
         sort = {};
     }
-    return await this.db.collection('highscores').find(sort).sort({ totalLevel: -1, totalXp: -1 }).skip(startIndex).limit(limit).toArray();
+    return await this.db.collection('highscores').find(sort, { projection: { username: 0 } }).sort({ totalLevel: -1, totalXp: -1 }).skip(startIndex).limit(limit).toArray();
   }
 }
