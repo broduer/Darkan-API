@@ -1,4 +1,6 @@
 module.exports = {
+  KEY_PATH: '../key.pem',
+  CERT_PATH: '../cert.pem',
   LOBBY_API_URI: 'http://dev.darkan.org:4040/api/',
   LOBBY_API_KEY: 'TEST_API_KEY',
   LOBBY_MONGO_CONN_URI: 'mongodb://localhost:27017',
