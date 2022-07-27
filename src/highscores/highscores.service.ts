@@ -7,7 +7,6 @@ export class HighscoresService {
 
   async getOverall(page = 1, limit = 25, gamemode = 'all') {
     const startIndex = (page - 1) * limit;
-    const endIndex = page * limit;
     let sort = {};
     switch(gamemode) {
       case 'ironman':

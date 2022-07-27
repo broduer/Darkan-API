@@ -7,7 +7,6 @@ export class LogsService {
 
   async getLogs(page = 1, limit = 25, type: string) {
     const startIndex = (page - 1) * limit;
-    const endIndex = page * limit;
     return await this.db.collection('logs').find({ type }).skip(startIndex).limit(limit).toArray();
   }
 }
