@@ -12,12 +12,14 @@ export class PlayersService {
     if (!account)
       throw new NotFoundException('Account not found.');
     let player = await this.worldDb.collection('players').findOne({ username: account.username }, { projection: {
-      inventory: 1,
-      bank: 1,
-      skills: 1,
+      '_id': 0,
+      'inventory.items': 1,
+      'bank.bankTabs': 1,
+      'skills.level': 1,
+      'skills.xp': 1,
       npcKills: 1,
       variousCounter: 1,
-      timePlayed: 1,
+      timePlayed: 1
     } });
     if (!player)
       throw new NotFoundException('Player not found.');
