@@ -11,6 +11,7 @@ async function bootstrap() {
       cert: fs.readFileSync(config.CERT_PATH)
     }
   });
+  app.enableCors();
   app.setGlobalPrefix('v1');
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(8443);
