@@ -1,5 +1,7 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { WORLD_MONGODB_PROVIDER, LOBBY_MONGODB_PROVIDER } from 'src/constants';
+import fetch from 'cross-fetch';
+
 
 @Injectable()
 export class PlayersService {
@@ -24,5 +26,11 @@ export class PlayersService {
     if (!player)
       throw new NotFoundException('Player not found.');
     return player;
+  }
+
+  async getPlayersOnline() {
+    let res = await fetch('http://prod.darkan.org:4040/api/playersonline');
+    let count = Number(await res.text());
+    return { count };
   }
 }
