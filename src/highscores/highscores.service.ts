@@ -5,22 +5,34 @@ import { WORLD_MONGODB_PROVIDER } from 'src/constants';
 export class HighscoresService {
   constructor(@Inject(WORLD_MONGODB_PROVIDER) private readonly db: any) {}
 
-  async getOverall(page = 1, limit = 25, gamemode = 'all') {
+  async getCount() {
+    let count = await this.db.collection('highscores').count();
+    return { count };
+  }
+
+  async get(page = 1, limit = 25, gamemode = 'all', skill = -1) {
     page = Number(page);
     limit = Number(limit);
     const startIndex = (page - 1) * limit;
-    let sort = {};
+    let filter = {};
     switch(gamemode) {
       case 'ironman':
-        sort = { ironman: true };
+        filter = { ironman: true };
         break;
       case 'regular':
-        sort = { ironman: false };
+        filter = { ironman: false };
         break;
       default:
-        sort = {};
+        filter = {};
         break;
     }
-    return await this.db.collection('highscores').find(sort, { projection: { username: 0 } }).sort({ totalLevel: -1, totalXp: -1 }).skip(startIndex).limit(limit).toArray();
+    let sort = {};
+    if (!skill || skill < 0)
+      sort = { totalLevel: -1, totalXp: -1 };
+    else {
+      sort = { };
+      sort['xp.'+skill] = -1;
+    }
+    return await this.db.collection('highscores').find(filter, { projection: { username: 0 } }).sort(sort).skip(startIndex).limit(limit).toArray();
   }
 }
